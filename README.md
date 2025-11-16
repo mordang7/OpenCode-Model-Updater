@@ -28,3 +28,6 @@ Keep your OpenCode AI models fresh! This handy script automatically syncs models
 ## 🤝 Contributing
 
 Feel free to open issues or PRs for improvements!
+
+## 💖 Support
+If you find this tool helpful, consider supporting me on [PayPal](https://paypal.me/GeekJohn)! Every bit helps keep the project going. 🚀
