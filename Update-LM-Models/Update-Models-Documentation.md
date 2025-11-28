@@ -10,6 +10,8 @@ This project contains versions of a bash script to update AI models for OpenCode
 -   **V2/**: Improved version with enhancements.
 -   **V3/**: Version with user prompts for Ollama and LM Studio setup.
 -   **V4/**: Latest version with Llama.cpp support added.
+-   **V5/**: Linux TUI version using Python and `rich` library.
+-   **Windows_V1/**: Native Windows GUI application.
 
 ## Changes Made in V2
 
@@ -37,22 +39,49 @@ This project contains versions of a bash script to update AI models for OpenCode
 3. **Enhanced Update Messages**: Dynamically lists which providers were updated (e.g., "Only the Ollama & LM Studio models were Updated!").
 4. **Config Persistence**: Saves LLAMA_URL in ~/.update-models-config.
 
+## Changes Made in V5 (Linux TUI)
+
+1.  **Python Rewrite**: Replaced Bash script with a robust Python script (`model_updater.py`).
+2.  **Terminal UI (TUI)**: Utilizes the `rich` library to provide a modern terminal interface with:
+    -   Real-time progress bars for connection checks.
+    -   Formatted summary tables for update results.
+    -   Colored status messages.
+3.  **Global Command**: Includes an `install.sh` script that installs dependencies and creates a global `mu` command in `~/.local/bin`, allowing the updater to be run from any directory.
+4.  **Parallel Processing**: Uses threading to check all three providers (Ollama, LM Studio, Llama.cpp) simultaneously for faster execution.
+
+## New Windows Version (V1)
+
+1.  **Native GUI**: Created a standalone Python application (`updater_gui.py`) using `tkinter`.
+2.  **Visual Interface**:
+    -   Input fields for configuring server URLs.
+    -   "Save Config" and "Update Models" buttons.
+    -   Progress bar and scrolling log window.
+3.  **Desktop Integration**: Includes an `install.bat` script that automatically creates a Desktop shortcut for easy access.
+4.  **Feature Parity**: Matches all features of the Linux version, including config persistence, model removal, and backup creation.
+
 ## Repository
 
-The project has been uploaded to GitHub as "OpenCode-Model-Updater" (https://github.com/mordang7/OpenCode-Model-Updater), currently containing V3 for public release. V4 is ready locally but pending push due to tool restrictions. V1 and V2 remain local.
-
-## Release
-
--   **v1.0**: Initial release created on GitHub with title "Initial Release" and description "This is the initial release of OpenCode Model Updater".
+The project has been uploaded to GitHub as "OpenCode-Model-Updater" (https://github.com/mordang7/OpenCode-Model-Updater).
+-   **v5.0**: Major release adding Linux TUI and Windows GUI versions.
 
 ## Usage
 
-To make executable: `chmod +x update-models.sh`
-To run: `./update-models.sh`
+### Linux (V5)
+1.  **Install**: Run `./install.sh` inside the `V5` directory.
+2.  **Run**: Type `mu` in any terminal window.
+
+### Windows (V1)
+1.  **Install**: Run `install.bat` inside the `Windows_V1` directory.
+2.  **Run**: Double-click the "OpenCode Model Updater" shortcut on your Desktop.
 
 ## Dependencies
 
--   curl
--   jq
--   python3
+### Linux (V5)
+-   Python 3
+-   `rich` library (installed via `install.sh`)
 -   OpenCode config at `$HOME/.config/opencode/opencode.json`
+
+### Windows (V1)
+-   Python 3 (must be in PATH)
+-   `tkinter` (usually included with Python)
+-   OpenCode config at `%USERPROFILE%\.config\opencode\opencode.json`
